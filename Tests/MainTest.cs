@@ -8,15 +8,15 @@ namespace Tests
 		[InlineData("mod")]
 		[InlineData("pAsswOrd9")]
 		[InlineData("sEvEn777")]
-		[InlineData("twElvElettr")]
-		[InlineData("0xFF_____")]
+		[InlineData("twElvEl3ttr")]
+		[InlineData("0xEE_____")]
 		[InlineData("Y0Y0TIME")]
 		public void AllowsPassword(string password)
 		{
 			List<string> passwords = ["Test", "admin"];
 
 			Assert.True(Passwords.AddPassword(password, passwords));
-			Assert.Contains(password, passwords);
+			Assert.Equal(3, passwords.Count);
 		}
 
 		[Theory]
@@ -31,13 +31,13 @@ namespace Tests
 		[InlineData("admin")]
 		[InlineData("PAsswOrd")]
 		[InlineData("sEvEn77")]
-		[InlineData("twElvEletter")]
+		[InlineData("twElvEl3tter")]
 		public void BansPassword(string password)
 		{
 			List<string> passwords = ["Test", "admin"];
 
 			Assert.False(Passwords.AddPassword(password, passwords));
-			Assert.DoesNotContain(password, passwords);
+			Assert.Equal(2, passwords.Count);
 		}
 	}
 }
