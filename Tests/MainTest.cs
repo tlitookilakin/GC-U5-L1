@@ -39,5 +39,22 @@ namespace Tests
 			Assert.False(Passwords.AddPassword(password, passwords));
 			Assert.Equal(2, passwords.Count);
 		}
+
+		[Theory]
+		[InlineData(1, true)]
+		[InlineData(2, true)]
+		[InlineData(3, true)]
+		[InlineData(4, false)]
+		[InlineData(6, false)]
+		[InlineData(8, false)]
+		[InlineData(9, false)]
+		[InlineData(10, false)]
+		[InlineData(977, true)]
+		[InlineData(978, false)]
+		public void IsPrime(int number, bool shouldBePrime)
+		{
+			bool isPrime = Passwords.IsNumberPrime(number);
+			Assert.Equal(shouldBePrime, isPrime);
+		}
 	}
 }

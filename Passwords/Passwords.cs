@@ -1,6 +1,8 @@
-﻿namespace passwordTests
+﻿using System.Text.RegularExpressions;
+
+namespace passwordTests
 {
-	public class Passwords
+	public partial class Passwords
 	{
 		public const string ForbiddenChars = " 6";
 		public const string CapitalVowels = "AEIOUY";
@@ -22,6 +24,9 @@
 			}
 
 			if (password.Length is <= 7 or >= 12)
+				return false;
+
+			if (!ContainsOnlyPrimes(password))
 				return false;
 
 			bool hasNumber = false;
@@ -49,5 +54,27 @@
 
 			return false;
 		}
+
+		public static bool ContainsOnlyPrimes(string password)
+		{
+			IList<Match> matches = NumberSearch().Matches(password);
+			foreach (var match in matches)
+				if (!IsNumberPrime(int.Parse(match.Value)))
+					return false;
+			return true;
+		}
+
+		public static bool IsNumberPrime(int num)
+		{
+			int sqrt = (int)Math.Sqrt(num);
+
+			for (int i = 2; i <= sqrt; i++)
+				if (num % i == 0)
+					return false;
+			return true;
+		}
+
+		[GeneratedRegex("[0-9]+")]
+		private static partial Regex NumberSearch();
 	}
 }
