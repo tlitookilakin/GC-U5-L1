@@ -6,8 +6,8 @@ namespace Tests
 	{
 		[Theory]
 		[InlineData("mod")]
-		[InlineData("pAsswOrd9")]
-		[InlineData("sEvEn777")]
+		[InlineData("pAsswOrd5")]
+		[InlineData("sEvEn17_")]
 		[InlineData("twElvEl3ttr")]
 		[InlineData("0xEE_____")]
 		[InlineData("Y0Y0TIME")]
@@ -31,6 +31,7 @@ namespace Tests
 		[InlineData("admin")]
 		[InlineData("PAsswOrd")]
 		[InlineData("sEvEn77")]
+		[InlineData("sEvEn777")]
 		[InlineData("twElvEl3tter")]
 		public void BansPassword(string password)
 		{
